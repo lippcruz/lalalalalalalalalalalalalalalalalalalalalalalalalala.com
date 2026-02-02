@@ -14,8 +14,6 @@
             background-color: #000;
             font-family: Arial, sans-serif;
         }
-
-        /* 1. O GIF de Fundo */
         .bg-fullscreen {
             background: url('lalalalalalalalalalalalalalalalalalalalalalalalalala.gif') no-repeat center center fixed;
             background-size: cover;
@@ -24,24 +22,20 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 1; /* Camada mais baixa */
+            z-index: 1;
         }
-
-        /* 2. O Container do Anúncio */
         .ad-container {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: auto;
-            min-height: 90px; /* Altura padrão de banners (pode ajustar) */
+            min-height: 90px;
             display: flex;
-            justify-content: center; /* Centraliza o banner horizontalmente */
-            align-items: flex-end;   /* Cola no fundo */
-            z-index: 5; /* Fica acima do GIF */
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 5;
         }
-
-        /* Estilo apenas para o placeholder (pode apagar depois que colocar o adsense) */
         .ad-placeholder {
             width: 728px;
             height: 90px;
@@ -50,10 +44,8 @@
             align-items: center;
             justify-content: center;
             border: 1px dashed #777;
-            margin-bottom: 10px; /* Um pequeno respiro da borda */
+            margin-bottom: 10px;
         }
-
-        /* 3. O Overlay de Clique (Fica por cima de tudo) */
         #start-overlay {
             position: absolute;
             top: 0;
@@ -64,7 +56,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 999; /* Camada mais alta: cobre o anúncio também */
+            z-index: 999;
             cursor: pointer;
             color: white;
             font-size: 2rem;
@@ -75,14 +67,12 @@
     </style>
 </head>
 <body>
-
 <div id="start-overlay" onclick="iniciarExperiencia()">
     ▶ Clique para entrar
 </div>
 
 <div class="ad-container">
-
-    <div class="ad-placeholder"> </div>
+    <div class="ad-placeholder"></div>
 </div>
 
 <div class="bg-fullscreen" onclick="iniciarExperiencia()"></div>
@@ -97,21 +87,16 @@
 
     function iniciarExperiencia() {
         audio.play().then(() => {
-            // Ao tocar, o overlay some e revela o site e o anúncio
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
-        }).catch(error => {
-            console.log("Aguardando interação...");
-        });
+        }).catch(() => {});
     }
 
     window.onload = function() {
-        // Tenta tocar sozinho. Se conseguir, remove o overlay na hora.
         audio.play().then(() => {
             overlay.style.display = 'none';
-        }).catch(e => { console.log("Autoplay bloqueado, aguardando clique."); });
+        }).catch(() => {});
     };
 </script>
-
 </body>
 </html>
