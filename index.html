@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lalalalalalalalalalalalalalalalalalalalalalalalalala.com</title>
+    <style>
+        /* Remove margens e garante tela cheia */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Evita barras de rolagem */
+            background-color: #000;
+        }
+
+        /* Configuração do GIF em Fullscreen */
+        .bg-fullscreen {
+            background: url('lalalalalalalalalalalalalalalalalalalalalalalalalala.gif') no-repeat center center fixed;
+            background-size: cover; /* Cobre a tela toda mantendo a proporção */
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer; /* Indica que é clicável caso o áudio não inicie */
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-fullscreen" onclick="startAudio()"></div>
+
+<audio id="audioPlayer" loop>
+    <source src="lalalalalalalalalalalalalalalalalalalalalalalalalala.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // Script para lidar com a política de Autoplay dos navegadores
+    var audio = document.getElementById("audioPlayer");
+
+    function startAudio() {
+        audio.play().catch(function(error) {
+            console.log("Aguardando interação do usuário para tocar o som.");
+        });
+    }
+
+    // Tenta tocar assim que carrega
+    window.onload = startAudio;
+
+    // Se o navegador bloquear, toca no primeiro clique em qualquer lugar
+    document.addEventListener('click', function() {
+        audio.play();
+    });
+</script>
+
+</body>
+</html>
