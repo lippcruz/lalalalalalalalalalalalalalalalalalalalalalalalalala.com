@@ -5,54 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lalalalalalalalalalalalalalalalalalalalalalalalalala.com</title>
     <style>
-        /* Remove margens e garante tela cheia */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow: hidden; /* Evita barras de rolagem */
+            overflow: hidden;
             background-color: #000;
+            font-family: Arial, sans-serif;
         }
 
-        /* Configuração do GIF em Fullscreen */
+        /* 1. O GIF de Fundo */
         .bg-fullscreen {
             background: url('lalalalalalalalalalalalalalalalalalalalalalalalalala.gif') no-repeat center center fixed;
-            background-size: cover; /* Cobre a tela toda mantendo a proporção */
+            background-size: cover;
             height: 100%;
             width: 100%;
             position: absolute;
             top: 0;
             left: 0;
-            cursor: pointer; /* Indica que é clicável caso o áudio não inicie */
+            z-index: 1; /* Camada mais baixa */
+        }
+
+        /* 2. O Container do Anúncio */
+        .ad-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            min-height: 90px; /* Altura padrão de banners (pode ajustar) */
+            display: flex;
+            justify-content: center; /* Centraliza o banner horizontalmente */
+            align-items: flex-end;   /* Cola no fundo */
+            z-index: 5; /* Fica acima do GIF */
+        }
+
+        /* Estilo apenas para o placeholder (pode apagar depois que colocar o adsense) */
+        .ad-placeholder {
+            width: 728px;
+            height: 90px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #777;
+            margin-bottom: 10px; /* Um pequeno respiro da borda */
+        }
+
+        /* 3. O Overlay de Clique (Fica por cima de tudo) */
+        #start-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999; /* Camada mais alta: cobre o anúncio também */
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: opacity 0.5s ease;
         }
     </style>
 </head>
 <body>
 
-<div class="bg-fullscreen" onclick="startAudio()"></div>
+<div id="start-overlay" onclick="iniciarExperiencia()">
+    ▶ Clique para entrar
+</div>
 
-<audio id="audioPlayer" loop>
+<div class="ad-container">
+
+    <div class="ad-placeholder"> </div>
+</div>
+
+<div class="bg-fullscreen" onclick="iniciarExperiencia()"></div>
+
+<audio id="audioPlayer" loop preload="auto">
     <source src="lalalalalalalalalalalalalalalalalalalalalalalalalala.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    // Script para lidar com a política de Autoplay dos navegadores
     var audio = document.getElementById("audioPlayer");
+    var overlay = document.getElementById("start-overlay");
 
-    function startAudio() {
-        audio.play().catch(function(error) {
-            console.log("Aguardando interação do usuário para tocar o som.");
+    function iniciarExperiencia() {
+        audio.play().then(() => {
+            // Ao tocar, o overlay some e revela o site e o anúncio
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; }, 500);
+        }).catch(error => {
+            console.log("Aguardando interação...");
         });
     }
 
-    // Tenta tocar assim que carrega
-    window.onload = startAudio;
-
-    // Se o navegador bloquear, toca no primeiro clique em qualquer lugar
-    document.addEventListener('click', function() {
-        audio.play();
-    });
+    window.onload = function() {
+        // Tenta tocar sozinho. Se conseguir, remove o overlay na hora.
+        audio.play().then(() => {
+            overlay.style.display = 'none';
+        }).catch(e => { console.log("Autoplay bloqueado, aguardando clique."); });
+    };
 </script>
 
 </body>
