@@ -9,6 +9,8 @@
 
         gtag('config', 'G-8F5QCRKR5K');
     </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7258323798205876"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lalalalalalalalalalalalalalalalalalalalalalalalalala.com</title>
@@ -39,12 +41,15 @@
         .bg-fullscreen {
             background: url('lalalalalalalalalalalalalalalalalalalalalalalalalala.gif') no-repeat center center fixed;
             background-size: cover;
-            height: 100%;
-            width: 100%;
+            /* Transborda a página em 5%: usa 110% de largura/altura e desloca -5% */
+            height: 110%;
+            width: 110%;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: -5%;
+            left: -5%;
             z-index: 1;
+            transform: translate3d(0,0,0);
+            will-change: transform;
         }
         .ad-container {
             position: fixed;
