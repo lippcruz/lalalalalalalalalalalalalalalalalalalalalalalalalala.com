@@ -196,9 +196,10 @@
             margin: 0 auto
         }
 
-        .ad-placeholder.ad-desktop .adsbygoogle {
-            width: 100%;
-            height: auto
+        .ad-placeholder.ad-desktop {
+            display: block;
+            max-width: 970px;
+            margin: 0 auto
         }
 
         .ad-placeholder.ad-mobile {
@@ -207,19 +208,10 @@
             margin: 0 auto
         }
 
-        .ad-placeholder.ad-mobile .adsbygoogle {
-            width: 100%;
-            height: auto
-        }
-
         @media (max-width: 767px) {
-            .ad-placeholder.ad-desktop {
-                display: none
-            }
-
-            .ad-placeholder.ad-mobile {
-                display: block
-            }
+            .ad-placeholder.ad-desktop { display: none }
+            .ad-placeholder.ad-mobile { display: block; height: 250px; }
+            .ad-container { min-height: 250px }
         }
     </style>
 </head>
@@ -240,28 +232,30 @@
 
 <div class="ad-container">
     <div class="ad-placeholder ad-desktop">
-        <!-- lalala desktop -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-7258323798205876"
-             data-ad-slot="7114233216"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+        <!-- lalala desktop (highperformanceformat) -->
         <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+          atOptions = {
+            'key' : 'a65c6036ef9f79f94cb86c60f4523009',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
         </script>
+        <script src="https://www.highperformanceformat.com/a65c6036ef9f79f94cb86c60f4523009/invoke.js"></script>
     </div>
     <div class="ad-placeholder ad-mobile">
-        <!-- lalala mobile -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-7258323798205876"
-             data-ad-slot="1607047244"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+        <!-- lalala mobile (highperformanceformat) -->
         <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+          atOptions = {
+            'key' : 'ee27fe6b350cef4d7c03113bbca238ef',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
         </script>
+        <script src="https://www.highperformanceformat.com/ee27fe6b350cef4d7c03113bbca238ef/invoke.js"></script>
     </div>
 </div>
 
