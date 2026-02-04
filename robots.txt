@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://lalalalalalalalalalalalalalalalalalalalalalalalalala.com/sitemap.xml
+
+# Crawlers can use the sitemap above. If you want to block specific bots or paths,
+# add Disallow rules below.
